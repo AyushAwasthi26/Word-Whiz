@@ -1,0 +1,523 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --primary-bg: #0f0f1e;
+    --secondary-bg: #1a1a2e;
+    --card-bg: #16213e;
+    --text-primary: #f9f4da;
+    --text-secondary: #a8b2d1;
+    --text-dim: #6b7280;
+    --accent-green: #10a95b;
+    --accent-red: #ec5d49;
+    --accent-yellow: #fcb829;
+    --accent-blue: #11b5e5;
+    --accent-purple: #7a5ea7;
+    --border-color: #2a2a4a;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --glow-color: rgba(16, 169, 91, 0.3);
+    --danger-glow: rgba(236, 93, 73, 0.3);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: "Inter", Arial, sans-serif;
+    background-color: var(--primary-bg);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(16, 169, 91, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(17, 181, 229, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(122, 94, 167, 0.03) 0%, transparent 50%);
+    overflow-x: hidden;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    width: 100%;
+    flex-grow: 1;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+    animation: fadeIn 0.8s ease-out;
+}
+
+header  h1 {
+    font-family:"Merriweather", serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(17, 181, 229, 0.5);
+    background: linear-gradient(90deg, #11b5e5, #7a5ea7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+header > p {
+    font-size: 1rem;
+    max-width: 500px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0 auto;
+}
+
+section.game-status {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 500px;
+    min-height: 120px;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    animation: slideDown 0.5s ease-out;
+}
+
+section.game-status::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    border-radius: 12px;
+    opacity: 0.9;
+}
+
+section.game-status.won {
+    color: white;
+    box-shadow: 0 0 25px var(--glow-color);
+}
+
+section.game-status.won::before {
+    background: linear-gradient(135deg, var(--accent-green), #0d7d42);
+}
+
+section.game-status.lost {
+    color: white;
+    box-shadow: 0 0 25px var(--danger-glow);
+}
+
+section.game-status.lost::before {
+    background: linear-gradient(135deg, var(--accent-red), #a02525);
+}
+
+section.game-status.farewell {
+    color: white;
+    border: 1px dashed var(--border-color);
+    background: linear-gradient(135deg, var(--accent-purple), #5a4490);
+    box-shadow: 0 4px 15px var(--shadow-color);
+}
+
+.status-content {
+    text-align: center;
+    z-index: 1;
+}
+
+.status-subtitle {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-top: 0.5rem;
+}
+
+section.game-status > p {
+    margin: 0.5rem 0;
+    font-weight: 500;
+    z-index: 1;
+}
+
+section.game-status > p.farewell-message {
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.2rem;
+}
+
+section.game-status > h2 {
+    font-size: 1.5rem;
+    margin: 0.5rem;
+    font-weight: 600;
+    z-index: 1;
+}
+
+section.language-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    max-width: 600px;
+    margin-bottom: 2.5rem;
+    animation: fadeIn 1s ease-out 0.3s both;
+}
+
+span.chip {
+    border-radius: 6px;
+    padding: 8px 12px;
+    position: relative;
+    font-weight: 800;
+    font-size: 1.25rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    cursor: default;
+}
+
+span.chip::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+span.chip:hover::after {
+    opacity: 1;
+}
+
+/* Dimmed overlay with skull on "lost" languages */
+span.chip.lost::before {
+    content: "💀";
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    font-size: 1rem;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1;
+    animation: skullAppear 0.6s ease-out;
+}
+
+section.word {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 2rem;
+    animation: fadeIn 1s ease-out 0.5s both;
+}
+
+section.word > span {
+    height: 60px;
+    width: 60px;
+    background-color: var(--card-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
+    font-weight: 800;
+    border-radius: 10px;
+    border-bottom: 2px solid transparent;
+    box-shadow: 0 4px 8px rgb(0, 0, 0);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+section.word > span::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(17, 181, 229, 0.2), rgba(122, 94, 167, 0.2));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+section.word > span:hover::before {
+    opacity: 1;
+}
+
+section.word > span.missed-letter {
+    color: var(--accent-red);
+    animation: shake 0.5s ease-out;
+}
+
+section.keyboard {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    max-width: 550px;
+    margin-bottom: 2.5rem;
+    animation: fadeIn 1s ease-out 0.7s both;
+}
+
+section.keyboard > button {
+    font-family: 'poppins';
+    height: 50px;
+    width: 50px;
+    background-color: var(--card-bg);
+    border: 3px solid var(--border-color);
+    border-radius: 17px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--text-primary);
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+section.keyboard > button::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+section.keyboard > button:hover::before {
+    width: 100px;
+    height: 100px;
+}
+
+section.keyboard > button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    scale: 1.1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+section.keyboard > button:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+section.keyboard > button.correct {
+    background-color: var(--accent-green);
+    border-color: var(--accent-green);
+    color: white;
+    animation: pulse 0.5s ease-out;
+}
+
+section.keyboard > button.wrong {
+    background-color: var(--accent-red);
+    border-color: var(--accent-red);
+    color: white;
+    animation: shake 0.5s ease-out;
+}
+
+section.keyboard > button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    transform: none;
+}
+
+button.new-game {
+    background: linear-gradient(135deg, var(--accent-blue), #0a8dbd);
+    border: none;
+    font-family: 'Lato';
+    border-radius: 10px;
+    width: 200px;
+    height: 50px;
+    padding: 12px 24px;
+    display: block;
+    margin: 0 auto;
+    cursor: pointer;
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: white;
+    box-shadow: 0 4px 12px rgba(17, 181, 229, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 0.8s ease-out;
+}
+
+button.new-game::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+button.new-game:hover::before {
+    left: 100%;
+}
+
+button.new-game:hover {
+    transform: translateY(-2px);
+    scale : 1.1 ;
+    box-shadow: 0 6px 16px rgba(17, 181, 229, 0.4);
+}
+
+button.new-game:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(17, 181, 229, 0.3);
+}
+
+.keyboard-hint {
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 0.875rem;
+    margin-top: 1rem;
+    animation: fadeIn 1s ease-out;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-3px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(3px);
+    }
+}
+
+@keyframes skullAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    header  h1 {
+        font-size: 2rem;
+    }
+    
+    section.game-status {
+        min-height: 100px;
+        padding: 1rem;
+    }
+    
+    section.word > span {
+        height: 40px;
+        width: 40px;
+        font-size: 1.25rem;
+    }
+    
+    section.keyboard > button {
+        height: 40px;
+        width: 40px;
+        font-size: 0.875rem;
+    }
+    
+    button.new-game {
+        width: 180px;
+        height: 45px;
+    }
+    
+    .keyboard-hint {
+        font-size: 0.8rem;
+        padding: 0 1rem;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+.ourHead{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+header  img{
+    width:50px;
+    height:50px;
+}
